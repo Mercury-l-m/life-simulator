@@ -1,0 +1,228 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Microsoft YaHei', Arial, sans-serif;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+.game-container {
+    background: white;
+    border-radius: 20px;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+    max-width: 800px;
+    width: 100%;
+    padding: 30px;
+    position: relative;
+}
+
+.game-header {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.game-header h1 {
+    color: #1a73e8;
+    font-size: 2.5em;
+    margin-bottom: 10px;
+}
+
+.age-display {
+    font-size: 1.2em;
+    color: #666;
+}
+
+.stats-panel {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: 15px;
+    margin-bottom: 30px;
+}
+
+.stat-item {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.stat-label {
+    font-weight: bold;
+    color: #333;
+}
+
+.stat-bar {
+    height: 8px;
+    background: #f0f0f0;
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+.stat-fill {
+    height: 100%;
+    background: #1a73e8;
+    border-radius: 4px;
+    transition: width 0.3s ease;
+}
+
+.stat-value {
+    text-align: center;
+    font-weight: bold;
+    color: #1a73e8;
+}
+
+.event-panel {
+    background: #f8f9fa;
+    padding: 25px;
+    border-radius: 15px;
+    margin-bottom: 30px;
+}
+
+.event-panel h2 {
+    color: #333;
+    margin-bottom: 15px;
+    font-size: 1.5em;
+}
+
+.event-panel p {
+    color: #666;
+    margin-bottom: 20px;
+    line-height: 1.6;
+}
+
+.options-container {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.btn {
+    padding: 12px 20px;
+    background: #1a73e8;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-align: left;
+}
+
+.btn:hover {
+    background: #1557b0;
+    transform: translateY(-2px);
+}
+
+.history-panel {
+    background: #f8f9fa;
+    padding: 20px;
+    border-radius: 15px;
+    max-height: 200px;
+    overflow-y: auto;
+}
+
+.history-panel h3 {
+    color: #333;
+    margin-bottom: 15px;
+    font-size: 1.2em;
+}
+
+.history-list {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.history-item {
+    font-size: 0.9em;
+    color: #666;
+    padding: 5px 0;
+    border-bottom: 1px solid #eee;
+}
+
+.game-over {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(255, 255, 255, 0.95);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-radius: 20px;
+    z-index: 1000;
+}
+
+.game-over h2 {
+    color: #1a73e8;
+    font-size: 2em;
+    margin-bottom: 20px;
+}
+
+.game-over h3 {
+    color: #333;
+    font-size: 1.5em;
+    margin-bottom: 15px;
+}
+
+.game-over p {
+    color: #666;
+    margin-bottom: 30px;
+    text-align: center;
+    max-width: 60%;
+    line-height: 1.6;
+}
+
+.button-group {
+    display: flex;
+    gap: 15px;
+    margin-top: 20px;
+}
+
+.game-over .btn {
+    padding: 15px 30px;
+    font-size: 18px;
+}
+
+#rebirth-button {
+    background: #ff9800;
+}
+
+#rebirth-button:hover {
+    background: #f57c00;
+}
+
+#restart-button {
+    background: #4CAF50;
+}
+
+#restart-button:hover {
+    background: #45a049;
+}
+
+.hidden {
+    display: none !important;
+}
+
+@media (max-width: 768px) {
+    .game-container {
+        padding: 20px;
+    }
+    
+    .game-header h1 {
+        font-size: 2em;
+    }
+    
+    .stats-panel {
+        grid-template-columns: 1fr 1fr;
+    }
+}

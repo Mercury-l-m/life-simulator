@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>人生模拟器</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="game-container">
+        <header class="game-header">
+            <h1>人生模拟器</h1>
+            <div class="age-display">
+                <span id="age">0岁</span>
+                <span id="stage">懵懂初开</span>
+            </div>
+        </header>
+
+        <div class="stats-panel">
+            <div class="stat-item">
+                <span class="stat-label">📚 智力</span>
+                <div class="stat-bar">
+                    <div id="intelligence-bar" class="stat-fill"></div>
+                </div>
+                <span id="intelligence-value" class="stat-value">0</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-label">💪 健康</span>
+                <div class="stat-bar">
+                    <div id="health-bar" class="stat-fill"></div>
+                </div>
+                <span id="health-value" class="stat-value">0</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-label">💰 财富</span>
+                <div class="stat-bar">
+                    <div id="wealth-bar" class="stat-fill"></div>
+                </div>
+                <span id="wealth-value" class="stat-value">0</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-label">😊 幸福</span>
+                <div class="stat-bar">
+                    <div id="happiness-bar" class="stat-fill"></div>
+                </div>
+                <span id="happiness-value" class="stat-value">0</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-label">⚖️ 道德</span>
+                <div class="stat-bar">
+                    <div id="morality-bar" class="stat-fill"></div>
+                </div>
+                <span id="morality-value" class="stat-value">0</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-label">✨ 魅力</span>
+                <div class="stat-bar">
+                    <div id="charm-bar" class="stat-fill"></div>
+                </div>
+                <span id="charm-value" class="stat-value">0</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-label">🍀 运气</span>
+                <div class="stat-bar">
+                    <div id="luck-bar" class="stat-fill"></div>
+                </div>
+                <span id="luck-value" class="stat-value">0</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-label">🏆 声望</span>
+                <div class="stat-bar">
+                    <div id="reputation-bar" class="stat-fill"></div>
+                </div>
+                <span id="reputation-value" class="stat-value">0</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-label">🎨 艺术</span>
+                <div class="stat-bar">
+                    <div id="art-bar" class="stat-fill"></div>
+                </div>
+                <span id="art-value" class="stat-value">0</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-label">💻 编程</span>
+                <div class="stat-bar">
+                    <div id="programming-bar" class="stat-fill"></div>
+                </div>
+                <span id="programming-value" class="stat-value">0</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-label">⚽ 体育</span>
+                <div class="stat-bar">
+                    <div id="sports-bar" class="stat-fill"></div>
+                </div>
+                <span id="sports-value" class="stat-value">0</span>
+            </div>
+        </div>
+
+        <div class="event-panel">
+            <h2 id="event-title">游戏开始</h2>
+            <p id="event-description">你的人生即将开始，选择你的出生家庭。</p>
+            <div id="options-container" class="options-container"></div>
+        </div>
+
+        <div class="history-panel">
+            <h3>人生历程</h3>
+            <div id="history-list" class="history-list"></div>
+        </div>
+
+        <div id="game-over" class="game-over hidden">
+            <h2>游戏结束</h2>
+            <h3 id="ending-title">结局</h3>
+            <p id="ending-description"></p>
+            <div class="button-group">
+                <button id="rebirth-button" onclick="rebirth()" class="btn hidden">重生</button>
+                <button id="restart-button" onclick="restartGame()" class="btn">重新开始</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
