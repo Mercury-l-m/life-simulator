@@ -2094,22 +2094,16 @@ class LifeSimulator {
     }
 
     showNextEvent() {
-        this.advanceTime();
-        
-        if (this.age > 90) {
+        // 确保事件索引不超出数组范围
+        if (this.eventIndex >= this.events.length) {
             this.showEnding();
             return;
         }
-
-        this.updateStage();
-        console.log('Current age:', this.age);
-        console.log('Current stage:', this.stage);
         
-        this.currentEvent = this.getNextEvent();
-        console.log('Current event:', this.currentEvent);
+        // 获取当前事件
+        this.currentEvent = this.events[this.eventIndex];
         
         if (!this.currentEvent) {
-            console.log('No event found, showing ending');
             this.showEnding();
             return;
         }
@@ -2122,14 +2116,12 @@ class LifeSimulator {
         const optionsContainer = document.getElementById('options-container');
         optionsContainer.innerHTML = '';
 
-        console.log('Options:', this.currentEvent.options);
         this.currentEvent.options.forEach((option, index) => {
             const button = document.createElement('button');
             button.className = 'btn';
             button.textContent = option.text;
             button.onclick = () => this.chooseOption(index);
             optionsContainer.appendChild(button);
-            console.log('Added button:', option.text);
         });
     }
 
@@ -2181,79 +2173,14 @@ class LifeSimulator {
     }
 
     getNextEvent() {
-        // 简化逻辑，直接返回第一个事件
-        if (this.eventIndex === 0) {
-            const firstEvent = this.events.find(event => event.id === 'e101');
-            if (firstEvent) {
-                this.triggeredEvents.add(firstEvent.id);
-                return firstEvent;
+        // 简化逻辑，直接返回下一个未触发的事件
+        for (const event of this.events) {
+            if (!this.triggeredEvents.has(event.id)) {
+                this.triggeredEvents.add(event.id);
+                return event;
             }
         }
-        
-        const availableEvents = this.events.filter(event => {
-            if (this.triggeredEvents.has(event.id)) return false;
-            
-            const eventStage = event.id.charAt(1);
-            let stageMatch = false;
-            
-            switch(this.stage) {
-                case '婴儿期':
-                    stageMatch = eventStage === '1';
-                    break;
-                case '童年期':
-                    stageMatch = eventStage === '2';
-                    break;
-                case '青春期':
-                    stageMatch = eventStage === '3';
-                    break;
-                case '青年期':
-                    stageMatch = eventStage === '4';
-                    break;
-                case '中年期':
-                    stageMatch = eventStage === '5';
-                    break;
-                case '老年期':
-                    stageMatch = eventStage === '6';
-                    break;
-                case '暮年期':
-                    stageMatch = eventStage === '7';
-                    break;
-                default:
-                    stageMatch = false;
-            }
-            
-            if (!stageMatch) return false;
-            
-            if (event.conditions) {
-                for (const [stat, value] of Object.entries(event.conditions)) {
-                    if (this.stats[stat]< value) return false;
-                }
-            }
-            
-            if (event.requiredEvents) {
-                for (const requiredEvent of event.requiredEvents) {
-                    if (!this.triggeredEvents.has(requiredEvent)) return false;
-                }
-            }
-            
-            return true;
-        });
-
-        if (availableEvents.length === 0) return null;
-        
-        const weights = availableEvents.map(event => event.weight || 1);
-        const totalWeight = weights.reduce((sum, weight) => sum + weight, 0);
-        let random = Math.random() * totalWeight;
-        
-        for (let i = 0; i< availableEvents.length; i++) {
-            random -= weights[i];
-            if (random <= 0) {
-                this.triggeredEvents.add(availableEvents[i].id);
-                return availableEvents[i];
-            }
-        }
-        
-        return availableEvents[Math.floor(Math.random() * availableEvents.length)];
+        return null;
     }
 
     updateBranchFlags(eventTitle, choice) {
